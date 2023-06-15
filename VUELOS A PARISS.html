@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuelos</title>
+    <style>
+        #header {
+    background: #e9e8e6;
+    box-shadow: 0px 0px 25px 0 rgba(0, 0, 0, 0.08);
+    z-index: 997;
+    padding: 15px 0;
+  }
+  
+  .navbar {
+    padding: 0;
+  }
+  
+  .navbar ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+  }
+  
+  .navbar li {
+    position: relative;
+    padding: 10px 0 10px 28px;
+  }
+  
+  .navbar a,
+  .navbar a:focus {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Raleway", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #888888;
+    white-space: nowrap;
+    transition: 0.3s;
+    position: relative;
+  }
+  
+  .navbar a i,
+  .navbar a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+  }
+  
+  .navbar>ul>li>a:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #34b7a7;
+    visibility: hidden;
+    width: 0px;
+    transition: all 0.3s ease-in-out 0s;
+  }
+  
+  .navbar a:hover:before,
+  .navbar li:hover>a:before,
+  .navbar .active:before {
+    visibility: visible;
+    width: 25px;
+  }
+  
+  .navbar a:hover,
+  .navbar .active,
+  .navbar .active:focus,
+  .navbar li:hover>a {
+    color: #222222;
+  }
+  
+  .navbar .dropdown ul {
+    display: block;
+    position: absolute;
+    left: 14px;
+    top: calc(100% + 30px);
+    margin: 0;
+    padding: 10px 0;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    background: #fff;
+    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+    transition: 0.3s;
+    border-radius: 4px;
+  }
+  
+  .navbar .dropdown ul li {
+    min-width: 200px;
+    padding: 0;
+  }
+  
+  .navbar .dropdown ul a {
+    padding: 10px 20px;
+    font-size: 15px;
+    text-transform: none;
+    font-weight: 600;
+  }
+  
+  .navbar .dropdown ul a i {
+    font-size: 12px;
+  }
+  
+  .navbar .dropdown ul a:hover,
+  .navbar .dropdown ul .active:hover,
+  .navbar .dropdown ul li:hover>a {
+    color: #34b7a7;
+  }
+  
+  .navbar .dropdown:hover>ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+  }
+  
+  .navbar .dropdown .dropdown ul {
+    top: 0;
+    left: calc(100% - 30px);
+    visibility: hidden;
+  }
+  
+  .navbar .dropdown .dropdown:hover>ul {
+    opacity: 1;
+    top: 0;
+    left: 100%;
+    visibility: visible;
+  }
+  
+  @media (max-width: 1366px) {
+    .navbar .dropdown .dropdown ul {
+      left: -90%;
+    }
+  
+    .navbar .dropdown .dropdown:hover>ul {
+      left: -100%;
+    }
+  }
+  footer{background-color: rgb(234, 236, 210);}
+  #footer {
+    background: #e9e8e6;
+    padding: 30px 0;
+    color: #222222;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  #footer .credits {
+    padding-top: 5px;
+    font-size: 13px;
+  }
+  
+  #footer .credits a {
+    color: #3d2fbb;
+  }
+  header{background-color: blue;}
+  nav{background-color: lightskyblue;}
+  /* The dots/bullets/indicators */
+  .dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Raleway", sans-serif;
+  }
+  .back-to-top {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    right: 15px;
+    bottom: 15px;
+    z-index: 996;
+    background: #3d2fbb;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    transition: all 0.4s;
+  }
+  
+  .back-to-top i {
+    font-size: 24px;
+    color: #fff;
+    line-height: 0;
+  }
+  
+  .back-to-top:hover {
+    background: #3d2fbb;
+    color: #fff;
+  }
+  
+  .back-to-top.active {
+    visibility: visible;
+    opacity: 1;
+  }
+    </style>
+</head>
+<body>
+    <header><h1>Despegar</h1>
+        <input type="text"placeholder="buscar">
+        <button>Iniciar Sesión</button>
+     </header>
+     <nav>
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+          <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+              <li><a class="active" href="">Alojamientos</a></li>
+              <li><a href="VUELOS A PARISS.html">Vuelos</a></li>
+              <li><a href="">Paquetes</a></li>
+              
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+    <section>
+     <form action="post">
+        <hr>
+       <h2>Vuelos</h2>
+        <table>
+           <tr>
+               <td>Tipo de Pasaje:</td>
+               <td><input type="radio" name="idayvuelta" id="idayvuelta">Ida y Vuelta</td>
+               <td><input type="radio" name="idayvuelta" id="idayvuelta">Ida</td>
+               <td><input type="radio" name="idayvuelta" id="idayvuelta">Vuelta</td>
+           </tr>
+           <tr>
+               <td>Origen:</td>
+               <td><input type="text" id="desde" name="desde" required></td> 
+               <td>Destino:</td>
+               <td><input type="text" id="hasta" name="hasta" required></td>
+           </tr>
+           <tr>
+               <td>Día de Ida:</td>
+               <td><input type="date" name="fecha" id="fecha" required></td>
+               <td>Día de regreso:</td>
+               <td><input type="date" name="reg" id="reg" required></td>
+           </tr>
+           <tr>
+               <td>Hora de salida:</td>
+               <td><input type="time" id="hora" name="hora" required></td>
+           </tr>
+           <tr>
+               <td>Clase:</td>
+               <td><select name="clase" id="clase">
+                <option value="Económica">Económica</option>
+                <option value="Primera Clase">Primera Clase</option>
+            </select></td>
+           </tr>
+           <tr>
+               <td>Personas:</td>
+               <td><input type="number" name="personas" id="personas" min="1" max="10" placeholder="Maximo 10"></td>
+           </tr>
+           <tr>
+               <td>Cantidad de Menores:</td>
+               <td><input type="number" name="menores" id="menores"></td>
+            <td>Cantidad de Mayores:</td>
+            <td><input type="number" name="menores" id="menores"></td>
+        </tr>
+           <tr>
+               <td>Nombre y Apellido</td>
+               <td><input type="text" id="nya" name="nya"></td>
+           </tr>
+           <tr>
+               <td>DNI:</td>
+               <td><input type="number" name="dni" id="dni" placeholder="Sin puntos"></td>
+           </tr>
+           <tr>
+               <td>Mail:</td>
+               <td><input type="email" name="mail" id="mail"></td>
+           </tr>
+           <tr>
+               <td>Forma de Pago:</td>
+               <td><select name="formas_de_pago" id="formas_de_pago">
+                   <option value="Débito">Débito</option>
+                   <option value="Crédito">Crédito</option>
+               </select></td>
+            </tr>
+       </table>
+       <hr> 
+       <H1>Top destinos más buscados hoy en Argentina</H1>
+        <table>
+    <tr>
+        <td><img src="paris.png" width="150" height="150"></td>
+      <td><img src="USA.PNG"width="150" height="150" ></td>
+       <td><img src="España.PNG" width="150" height="150"></td>
+       <td><img src="ITALII.PNG" width="150" height="150" ></td>
+       <td><img src="GRECIA.PNG" width="150" height="150" ></td>
+       <td><img src="COLOMBIA.PNG"width="150" height="150" ></td>
+       <td><img src="CAADA.PNG" width="150" height="150"></td>
+    </tr>
+       <td>Paris</td>
+       <td>USA</td>
+       <td>España</td>
+       <td>Italia</td>
+       <td>Grecia</td>
+       <td>Colombia</td>
+       <td>Canada</td>
+    </table>
+    <footer>
+    <table>
+        <tr>
+            <td>Aerolíneas</td>
+        </tr>
+        <tr>
+            <td>Agentinas</td>
+        </tr>
+        <tr>
+            <td>Jetsmart</td>
+        </tr>
+        <tr>
+            <td>Turismocity</td>
+        </tr>
+    </table>
+    </footer>
+</form>
+</body>
+</html>
